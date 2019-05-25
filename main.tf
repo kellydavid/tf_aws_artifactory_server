@@ -77,4 +77,12 @@ module ec2 {
     volume_type = "gp2"
     volume_size = 10
   }]
+
+  user_data = <<EOF
+#!/bin/bash
+yum update -y
+yum install -y docker
+service docker start
+docker run -P -d -p 80:80 nginxdemos/hello
+EOF
 }
