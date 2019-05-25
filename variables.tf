@@ -34,3 +34,8 @@ variable ingress_cidr_blocks {
   type = "list"
   description = "A list of allowed cidr blocks for ingress traffic."
 }
+
+variable associate_public_ip_address {
+  default = false
+  description = "Set to true if a public ip address should be associated with the ec2 instance."
+}

@@ -69,6 +69,7 @@ module ec2 {
   monitoring             = true
   vpc_security_group_ids = ["${aws_security_group.server_sg.id}"]
   subnet_id              = "${var.vpc_subnet_id}"
+  associate_public_ip_address = "${var.associate_public_ip_address}"
 
   tags = "${var.tags}"
 
