@@ -1,3 +1,5 @@
+
+/*
 data "aws_ami" "amazon_linux" {
   most_recent = true
 
@@ -19,6 +21,8 @@ data "aws_ami" "amazon_linux" {
     ]
   }
 }
+*/
+
 
 resource "aws_security_group" "server_sg" {
   name        = "${var.name}-server-sg"
@@ -55,7 +59,7 @@ resource "aws_security_group" "server_sg" {
   }
 }
 
-
+/*
 module ec2 {
   source                 = "terraform-aws-modules/ec2-instance/aws"
   version                = "1.21.0"
@@ -86,10 +90,10 @@ service docker start
 docker run -P -d -p 80:80 nginxdemos/hello
 EOF
 }
-
+*/
 
 locals {
-  name        = "complete-ecs"
+//  name        = "complete-ecs"
   environment = "dev"
 
   # This is the convention we use to know what belongs to each other
@@ -183,7 +187,7 @@ module "this" {
     },
     {
       key                 = "Cluster"
-      value               = "${local.name}"
+      value               = "${var.name}"
       propagate_at_launch = true
     },
   ]
@@ -193,6 +197,6 @@ data "template_file" "user_data" {
   template = "${file("${path.module}/templates/user-data.sh")}"
 
   vars {
-    cluster_name = "${local.name}"
+    cluster_name = "${var.name}"
   }
 }
