@@ -25,6 +25,11 @@ variable vpc_subnet_id {
   description = "Subnet id."
 }
 
+variable instance_subnet_ids {
+  type = "list"
+  description = "A list of subnet ids which instances can connect to."
+}
+
 variable ssh_key_name {
   type = "string"
   description = "The ec2 ssh key name."

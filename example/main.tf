@@ -21,4 +21,9 @@ module artifactory_server {
   tags = {
     artifactory = "true"
   }
+  instance_subnet_ids = [
+    "subnet-03340c64",
+    "subnet-3e252877",
+    "subnet-90b1f4cb"
+  ]
 }
