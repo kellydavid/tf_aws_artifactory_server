@@ -5,14 +5,22 @@ resource "aws_cloudwatch_log_group" "hello_world" {
 
 resource "aws_ecs_task_definition" "hello_world" {
   family = "hello_world"
+  network_mode = "host"
 
   container_definitions = <<EOF
 [
   {
     "name": "hello_world",
-    "image": "hello-world",
+    "image": "nginxdemos/hello",
     "cpu": 0,
     "memory": 128,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80,
+        "protocol": "tcp"
+      }
+    ],
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
